@@ -66,8 +66,19 @@
 
         try {
             await navigator.clipboard.writeText(url);
-            message.textContent = "✓ URL copiato negli appunti!";
-            button.style.display = "none";
+            message.textContent = "✓ URL copiato!";
+
+            // Chiude la pagina dopo mezzo secondo
+            setTimeout(() => {
+                window.close();
+
+                // Se il browser non permette window.close(),
+                // torna alla pagina precedente.
+                setTimeout(() => {
+                    history.back();
+                }, 100);
+            }, 500);
+
         } catch (error) {
             message.textContent = "Premi il pulsante per copiare:";
             button.style.display = "inline-block";
