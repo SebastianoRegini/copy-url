@@ -8,51 +8,78 @@
 
 <body>
 
-<a href="https://sebastianoregini.github.io/copy-url/?url=https%3A%2F%2Fyoutu.be/5Kz3HbGB1k4">Cervicale stop #1</a>
-    
-<!--
+<a href="https://youtu.be/5Kz3HbGB1k4" class="copy-url">
+    Cervicale stop #1
+</a>
+<br><br>
+
+<a href="https://youtu.be/XXXXXXXXXXX" class="copy-url">
+    Cervicale stop #2
+</a>
+<br><br>
+
+<a href="https://youtu.be/YYYYYYYYYYY" class="copy-url">
+    Cervicale stop #3
+</a>
+<br><br>
+
+<a href="https://youtu.be/ZZZZZZZZZZZ" class="copy-url">
+    Cervicale stop #4
+</a>
+<br><br>
+
+<a href="https://youtu.be/AAAAAAAAAAA" class="copy-url">
+    Cervicale stop #5
+</a>
+<br><br>
+
+<a href="https://youtu.be/BBBBBBBBBBB" class="copy-url">
+    Cervicale stop #6
+</a>
+<br><br>
+
+<a href="https://youtu.be/CCCCCCCCCCC" class="copy-url">
+    Cervicale stop #7
+</a>
+
+
 <script>
-(async function () {
-    const url = new URLSearchParams(window.location.search).get("url");
+document.querySelectorAll(".copy-url").forEach(link => {
 
-    if (!url) {
-        document.body.textContent = "Nessun URL da copiare.";
-        return;
-    }
+    link.addEventListener("click", async function(event) {
 
-    try {
-        await navigator.clipboard.writeText(url);
+        // Non aprire il link
+        event.preventDefault();
 
-        // Piccolissimo ritardo per permettere al browser
-        // di completare la copia negli appunti.
-        setTimeout(() => {
-            window.close();
+        const url = this.href;
 
-            // Fallback se window.close() viene bloccato
-            setTimeout(() => {
-                history.back();
-            }, 50);
-
-        }, 100);
-
-    } catch (error) {
-        document.body.textContent = "Impossibile copiare automaticamente l'URL.";
-
-        // Fallback manuale
-        const button = document.createElement("button");
-        button.textContent = "Copia URL";
-        button.style.fontSize = "20px";
-        button.style.padding = "15px 25px";
-        button.onclick = async () => {
+        try {
+            // Copia l'URL nella clipboard
             await navigator.clipboard.writeText(url);
-            button.textContent = "✓ Copiato";
-        };
 
-        document.body.appendChild(button);
-    }
-})();
+            // Piccolo feedback
+            this.textContent = "✓ Copiato";
+
+            // Chiudi la pagina
+            setTimeout(() => {
+                window.close();
+
+                // Fallback se window.close() viene bloccato
+                setTimeout(() => {
+                    history.back();
+                }, 100);
+                
+            }, 100);
+
+        } catch (error) {
+            console.error("Errore nella copia:", error);
+            alert("Impossibile copiare l'URL.");
+        }
+
+    });
+
+});
 </script>
-    -->
 
 </body>
 </html>
